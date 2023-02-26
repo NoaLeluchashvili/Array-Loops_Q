@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q10-</h1>
+    <h2>Printing each row in the array</h2>
+    <div class="grid-container" id="Q2">
+      <p>Open "inspect"-> and then-> "console" ---></p>
+    </div>
+
+    <!-- <div class="btn" style="background-color: blue" onclick="Q10_()">Click</div> -->
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q10
+       */
+      function Q10_() {
+        let str = document.getElementById("input1").value;
+        console.log("\n\n*MyHtml*\nOriginal string:\n" + str);
+        str = SwapCaseLetter(str);
+        console.log("change string:\n" + str);
+        document.getElementById("result1").innerHTML = "result:\n" + str;
+        document.getElementById("result1").style.color = "yellow";
+      }
+
+      function printingMultyArray(array) {
+        for (let i = 0; i < array.length; i++) {
+          console.log("Row #" + i + ":");
+          if (array[i].length > 0) {
+            for (let j = 0; j < array[i].length; j++) {
+              console.log(array[i][j]);
+            }
+          }
+        }
+      }
+      /*test*/
+      console.log("Test Data:");
+      console.log([
+        [1, 2, 1, 24],
+        [8, 11, 9, 4],
+        [7, 0, 7, 27],
+        [7, 4, 28, 14],
+        [3, 10, 26, 7],
+      ]);
+      printingMultyArray([
+        [1, 2, 1, 24],
+        [8, 11, 9, 4],
+        [7, 0, 7, 27],
+        [7, 4, 28, 14],
+        [3, 10, 26, 7],
+      ]);
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

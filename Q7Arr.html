@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q7-</h1>
+    <h2>Sorting Array</h2>
+    <div class="grid-container" id="Q2">
+      <p>Put an array: <input type="text" id="input1" /></p>
+    </div>
+
+    <div
+      class="btn"
+      style="background-color: blue"
+      onclick="Q7_arrayFormatting()"
+    >
+      Click
+    </div>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+
+    <script>
+      /**Arrays
+       * Q7
+       */
+      function Q7_arrayFormatting() {
+        let checkArray = document.getElementById("input1").value;
+        console.log("Original array:\n" + checkArray);
+        //checking if its in formmat array [ , , ]
+        if (
+          !(checkArray[0] == "[" && checkArray[checkArray.length - 1] == "]")
+        ) {
+          console.log("not an array");
+          document.getElementById("result1").innerText =
+            "Your input is not an array";
+          document.getElementById("result1").style.color = "red";
+        } else {
+          let array = [];
+          let text = "",
+            j = 0;
+          for (let i = 1; i < checkArray.length - 1; i++) {
+            if (checkArray[i] != ",") text += checkArray[i];
+            else if (checkArray[i] == ",") {
+              array[j] = text;
+              j++;
+              text = "";
+            }
+          }
+          array[j] = text;
+          console.log("The array is:");
+          console.log(array);
+          console.log("After sorting:");
+          console.log(bubbleSort(array));
+
+          document.getElementById("result1").innerHTML = bubbleSort(array);
+          document.getElementById("result1").style.color = "yellow";
+        }
+      }
+      function bubbleSort(array) {
+        for (var i = 0; i <= array.length - 1; i++) {
+          // Last i elements are already in place
+          for (var j = 0; j < array.length - i - 1; j++) {
+            // Comparing two adjacent numbers
+            // and see if first is greater than second
+            if (array[j] > array[j + 1]) {
+              // Swap them if the condition is true
+              var temp = array[j];
+              array[j] = array[j + 1];
+              array[j + 1] = temp;
+            }
+          }
+        }
+        // Print the sorted array
+        return array;
+      }
+
+      /*test*/
+      console.log("The array is:");
+      console.log([4,7,-9,80,43,-2,111]);
+      console.log("After sorting:");
+      console.log(bubbleSort([4,7,-9,80,43,-2,111]));
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

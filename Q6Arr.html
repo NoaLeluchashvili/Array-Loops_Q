@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q6</h1>
+    <h2>Entering '-' between two even numbers</h2>
+    <div class="grid-container" id="Q2">
+      <p>Enter a number: <input type="text" id="input1" /></p>
+    </div>
+
+    <div class="btn" style="background-color: blue" onclick="Q6_()">Click</div>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q6
+       */
+      function Q6_() {
+        let n = document.getElementById("input1").value;
+        let arr = [];
+        for (let i = 0, j = 0; i < n.length; i++, j++) {
+          if (n[i] % 2 == 0 && n[i + 1] % 2 == 0) {
+            arr[j++] = n[i];
+            arr[j] = "-";
+          } else {
+            arr[j] = n[i];
+          }
+          document.getElementById("result1").innerHTML = Q6_joinAll(arr);
+          document.getElementById("result1").style.color = "yellow";
+        }
+      }
+
+      function Q6_joinAll(arr) {
+        let str = "";
+        for (let i = 0; i < arr.length; i++) {
+          str += arr[i];
+        }
+        return str;
+      }
+      /*test*/
+
+
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

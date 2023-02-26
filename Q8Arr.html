@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q8-</h1>
+    <h2>Frequency Element in Array</h2>
+    <div class="grid-container" id="Q2">
+      <p>Put an array: <input type="text" id="input1" /></p>
+    </div>
+
+    <div
+      class="btn"
+      style="background-color: blue"
+      onclick="Q8_arrayFormatting()"
+    >
+      Click
+    </div>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q8
+       */
+      function Q8_arrayFormatting() {
+        let checkArray = document.getElementById("input1").value;
+        console.log("\n\n*MyHtml*\nOriginal array:\n" + checkArray);
+        //checking if its in formmat array [ , , ]
+        if (
+          !(checkArray[0] == "[" && checkArray[checkArray.length - 1] == "]")
+        ) {
+          console.log("not an array");
+          document.getElementById("result1").innerText =
+            "Your input is not an array";
+          document.getElementById("result1").style.color = "red";
+        } else {
+          let array = [];
+          let text = "",
+            j = 0;
+          for (let i = 1; i < checkArray.length - 1; i++) {
+            if (checkArray[i] != ",") text += checkArray[i];
+            else if (checkArray[i] == ",") {
+              array[j] = text;
+              j++;
+              text = "";
+            }
+          }
+          array[j] = text;
+        //   console.log("*MyHtml*\nThe array is:");
+        //   console.log(array);
+          let res = mostFrequent(array);
+          console.log("max freq variable in array: " + res[1]);
+          console.log("its amont: " + res[0]);
+          document.getElementById("result1").innerHTML =
+            "The frequency is: " + res[1] + "\namont: " + res[0];
+          document.getElementById("result1").style.color = "yellow";
+        }
+      }
+
+      function countVar(arr, n) {
+        let count = 0;
+        let element_having_max_freq;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] == n) count++;
+        }
+        return count;
+      }
+      function mostFrequent(array) {
+        let max = 0;
+        let vari = array[0];
+        let res = [];
+        for (let i = 0; i < array.length; i++) {
+          let countIndexfre = countVar(array, array[i]);
+          if (countIndexfre > max) {
+            max = countIndexfre;
+            vari = array[i];
+          }
+        }
+        res[0] = max;
+        res[1] = vari;
+        return res;
+      }
+
+      /*test*/
+      console.log("Test Data\nThe array is:");
+      console.log([4, 7, -9, 80, 43, -2, 7, 7, 111, 7]);
+      let result = mostFrequent([4, 7, -9, 80, 43, -2, 7, 7, 111, 7]);
+      console.log("max freq variable in array: " + result[1]);
+      console.log("its amont: " + result[0]);
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

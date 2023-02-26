@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q5</h1>
+    <h2>Join Elements in array to a STRING</h2>
+    <div class="grid-container" id="Q2">
+      <p>Put an array: <input type="text" id="input1" /> </p>
+    </div>
+ 
+    <div class="btn" style="background-color: blue;" onclick="Q5_()">Click</div>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q5
+       */
+      function Q5_() { 
+        let checkArray = document.getElementById("input1").value;
+        console.log("Original array:\n"+checkArray);
+        //checking if its in formmat array [ , , ]
+          if ( checkArray[0] == "[" &&checkArray[checkArray.length - 1] == "]") 
+          {
+            let array = [];
+            let text = "",j = 0;
+            for (let i = 1; i < checkArray.length - 1; i++) {
+              if (checkArray[i] != ",") text += checkArray[i];
+              else if (checkArray[i] == ",") {
+                array[j] = text;
+                j++;
+                text = "";
+              }
+            }
+            array[j] = text;
+            console.log("\n\nHtml input:");
+            console.log("The array is:");
+            console.log(array);
+            console.log("The first element in the array is:");
+            console.log(Q5_joinAll(array));
+           
+        
+            document.getElementById("result1").innerHTML = 'Join elements from array to one string:';
+            document.getElementById("result1").style.color="yellow"
+            document.getElementById("result2").innerHTML = '"'+Q5_joinAll(array)+'"';
+            document.getElementById("result2").style.color="yellow"
+        } else {
+          console.log("not an array");
+          document.getElementById("result1").innerText =
+            "Your input is not an array";
+            document.getElementById("result1").style.color="red"
+        }
+      }
+
+      function Q5_joinAll(arr) 
+      {
+        let str=""
+        for(let i=0;i<arr.length;i++)
+        {
+            if(i==arr.length-1)
+                str+=arr[i]       
+            else
+                str+=arr[i]+","
+                    
+        }
+        return str
+      }
+
+    /*test*/
+    console.log("Test data")
+    console.log('["Red", "Green", "White", "Black"]')
+    console.log(Q5_joinAll(["Red", "Green", "White", "Black"]))
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

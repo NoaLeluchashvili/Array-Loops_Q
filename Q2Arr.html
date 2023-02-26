@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q2-</h1>
+    <div class="grid-container" id="Q2">
+      <p>Let's clone the array: <input type="text" id="input1" /></p>
+    </div>
+
+    <div class="btn" style="background-color: blue" onclick="Q2_()">Click</div>
+    <p id="result1"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q2
+       */
+      function Q2_() {
+        let checkArray = document.getElementById("input1").value;
+        console.log("Original array:\n" + checkArray);
+        //checking if its in formmat array [ , , ]
+        if (checkArray[0] == "[" && checkArray[checkArray.length - 1] == "]") {
+          let array = [];
+          let text = "",
+            j = 0;
+          for (let i = 1; i < checkArray.length - 1; i++) {
+            if (checkArray[i] != ",") text += checkArray[i];
+            else if (checkArray[i] == ",") {
+              array[j] = text;
+              j++;
+              text = "";
+            }
+          }
+          array[j] = text;
+          console.log("The array is:");
+          console.log(array);
+
+
+          newarr = Q2_clone1(array);
+          console.log(newarr);
+          document.getElementById("result1").innerHTML =
+            "Your array is: [" +
+            newarr +
+            "]\n and its len: " +
+            newarr.length +
+            "\ncheack the console to see the clone --> ";
+          document.getElementById("result1").style.color = "yellow";
+        } else {
+          console.log("not an array");
+          document.getElementById("result1").innerText =
+            "Your input is not an array";
+          document.getElementById("result1").style.color = "red";
+        }
+      }
+      function Q2_clone1(array) {
+        newarr = [];
+        for (let i = 0; i < array.length; i++) {
+          if (array.length % 2 == 0) {
+            if (i < array.length / 2) newarr[i] = array[i];
+            else {
+              newarr[i] = Q2_clone(array);
+              i = array.length - 1;
+            }
+          } else {
+            if (i < array.length / 2 - 1) newarr[i] = array[i];
+            else {
+              newarr[i] = Q2_clone(array);
+              i = array.length - 1;
+            }
+          }
+        }
+        return newarr;
+      }
+      function Q2_clone(arr) {
+        return arr.slice(arr.length / 2);
+      }
+
+      /*
+       *  Test Data:
+       */
+      console.log(" Test Data:\nQ2_clone([1, 2, 4, 0])");
+      console.log(Q2_clone([1, 2, 4, 0]));
+      console.log("Q2_clone([1, 2, [4, 0]])");
+      console.log(Q2_clone([1, 2, [4, 0]]));
+      // [1, 2, 4, 0]
+      // [1, 2, [4, 0]]
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

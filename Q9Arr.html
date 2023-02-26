@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q9-</h1>
+    <h2>Swap the case of each character of a string</h2>
+    <div class="grid-container" id="Q2">
+      <p>Put any string: <input type="text" id="input1" /></p>
+    </div>
+
+    <div
+      class="btn"
+      style="background-color: blue"
+      onclick="Q9_changeCaseLetter()"
+    >
+      Click
+    </div>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+
+    <script>
+      /**Arrays
+       * Q9
+       */
+      function Q9_changeCaseLetter() {
+        let str = document.getElementById("input1").value;
+        console.log("\n\n*MyHtml*\nOriginal string:\n" + str);
+        str = SwapCaseLetter(str);
+        console.log("change string:\n" + str);
+        document.getElementById("result1").innerHTML =
+          "result:\n" + str;
+        document.getElementById("result1").style.color = "yellow";
+      }
+      
+      function SwapCaseLetter(str) {
+        let resStr = [];
+
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] == str[i].toUpperCase()) {
+            resStr.push(str[i].toLowerCase());
+          } else if (str[i] == str[i].toLowerCase()) {
+            resStr.push(str[i].toUpperCase());
+          } else {
+            resStr.push(str[i]);
+          }
+        }
+        return resStr.join("");
+      }
+      /*test*/
+      console.log("Test Data:\nThe Quick Brown Fox");
+      console.log("\nresult:\n" + SwapCaseLetter("The Quick Brown Fox"));
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Array Game - Q4</h1>
+    <h2> Last Element in array by index</h2>
+    <div class="grid-container" id="Q2">
+      <p>Put an array: <input type="text" id="input1" /> </p>
+    </div>
+    <div class="grid-container" >
+      <p>choose an index: <input type="text" id="input2" /> </p>
+    </div>
+ 
+    <div class="btn" style="background-color: blue;" onclick="Q4_()">Click</div>
+    <p id="result1"></p>
+    <div class="btn" onclick="rootArr()">return</div>
+    <p style="font-size: 15px; color: aliceblue;">&copy; 2023 Noa Leluchashvili</p>
+    <script>
+      /**Arrays
+       * Q4
+       */
+      function Q4_() {
+        
+        let checkArray = document.getElementById("input1").value;
+        let index=document.getElementById("input2").value;
+        console.log("Original array:\n"+checkArray);
+        //checking if its in formmat array [ , , ]
+          if ( checkArray[0] == "[" &&checkArray[checkArray.length - 1] == "]") 
+          {
+            let array = [];
+            let text = "",j = 0;
+            for (let i = 1; i < checkArray.length - 1; i++) {
+              if (checkArray[i] != ",") text += checkArray[i];
+              else if (checkArray[i] == ",") {
+                array[j] = text;
+                j++;
+                text = "";
+              }
+            }
+            array[j] = text;
+            console.log("\n\nHtml input:");
+            console.log("The array is:");
+            console.log(array);
+            console.log("The first element in the array is:");
+            console.log(Q4_last(array,index));
+           
+        
+            document.getElementById("result1").innerHTML = "Last element in the array is: ["+Q4_first(array,index)+"]";
+            document.getElementById("result1").style.color="yellow"
+        } else {
+          console.log("not an array");
+          document.getElementById("result1").innerText =
+            "Your input is not an array";
+            document.getElementById("result1").style.color="red"
+        }
+      }
+
+      function Q4_last(arr,x) 
+      {
+        if(arr==null ||x<0)
+            return [];
+        if(x==null)
+            return arr[arr.length-1];
+        if(x>arr.length-1)
+            return arr
+        return arr.slice(arr.length-x);
+      }
+
+    /*test*/
+    console.log("Test data")
+    console.log(Q4_last([7, 9, 0, -2]));
+    console.log(Q4_last([],3));
+    console.log(Q4_last([7, 9, 0, -2],3));
+    console.log(Q4_last([7, 9, 0, -2],6));
+    console.log(Q4_last([7, 9, 0, -2],-3));
+    </script>
+    <script src="scriptArr.js"></script>
+  </body>
+</html>
